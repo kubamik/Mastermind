@@ -39,7 +39,17 @@ class _CheckBarState extends State<CheckBar> {
             });
           },
         ),
-        Text(title, style: TextStyle(fontSize: size * 15 / 360)),
+        InkWell(
+          child: Text(title, style: TextStyle(fontSize: size * 15 / 360)),
+          onTap: () {
+            setState(() {
+              stream.add(!value);
+              value = !value;
+            });
+          },
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
       ],
     );
   }

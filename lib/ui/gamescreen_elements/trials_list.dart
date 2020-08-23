@@ -5,10 +5,9 @@ import 'package:mastermind/bloc/game_bloc.dart';
 import 'package:mastermind/bloc/game_states.dart';
 
 class TrialsList extends StatelessWidget {
-  double size;
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size.width;
+    var size = MediaQuery.of(context).size.width;
     return BlocBuilder<GameBloc, GameState>(
       buildWhen: (GameState prevState, GameState state) =>
           prevState.trial != state.trial,
@@ -19,7 +18,7 @@ class TrialsList extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               for (var i = state.submits.length - 1; i >= 0; i--)
-                _tile(state.submits[i], i),
+                _tile(state.submits[i], i, size),
             ],
           ),
         );
@@ -27,7 +26,7 @@ class TrialsList extends StatelessWidget {
     );
   }
 
-  Widget _tile(List<List<int>> dots, int index) {
+  Widget _tile(List<List<int>> dots, int index, double size) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 5),
       title: Row(

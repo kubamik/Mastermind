@@ -14,7 +14,7 @@ import 'package:mastermind/ui/gamescreen_elements/field.dart';
 class Gamescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     return BlocListener<GameBloc, GameState>(
       listener: (BuildContext context, GameState state) {
         if (state is GameStateGameOver) {
@@ -26,7 +26,6 @@ class Gamescreen extends StatelessWidget {
             prevState.runtimeType != state.runtimeType,
         builder: (BuildContext context, GameState state) {
           return Scaffold(
-            resizeToAvoidBottomPadding: false,
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(

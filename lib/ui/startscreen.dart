@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:mastermind/bloc/game_events.dart';
 import 'package:mastermind/bloc/game_bloc.dart';
 
 import 'package:mastermind/ui/startscreen_elements/checkbar.dart';
@@ -16,6 +15,7 @@ class Startscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width;
     MyStreamControllers streams = MyStreamControllers();
+    streams.register();
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return Scaffold(
       appBar: AppBar(
@@ -56,14 +56,7 @@ class Startscreen extends StatelessWidget {
                 style: TextStyle(fontSize: size * 15 / 360),
               ),
               onPressed: () {
-                var data = streams.data;
-                BlocProvider.of<GameBloc>(context).add(StartGame(
-                  data[1],
-                  data[2],
-                  data[0],
-                  data[3],
-                  data[4],
-                ));
+                streams.startGame(BlocProvider.of<GameBloc>(context));
                 Navigator.of(context).pushReplacementNamed('/game');
               },
             ),

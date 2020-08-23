@@ -39,6 +39,9 @@ class _ChooseBarState extends State<ChooseBar> {
               );
             },
           ).toList(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
           onChanged: (value) {
             setState(() {
               this.value = value;
