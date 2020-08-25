@@ -47,11 +47,11 @@ class _TextInputFieldState extends State<TextInputField> {
             expands: false,
             enableInteractiveSelection: false,
             onChanged: (value) {
-              this.value = value;
               if (value == '') {
-                this.value = defaultTrials;
+                stream.add(int.parse(defaultTrials));
+              } else {
+                stream.add(int.parse(value));
               }
-              stream.add(int.parse(this.value));
             },
           ),
         ),

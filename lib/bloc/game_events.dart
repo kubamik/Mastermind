@@ -40,6 +40,14 @@ class ActivityChanged extends GameEvent {
   String toString() => 'ActivityChanged';
 }
 
+class AnswerCopied extends GameEvent {
+  final List<int> sequence;
+  AnswerCopied(this.sequence): super([sequence]);
+
+  @override
+  String toString() => 'AnswerCopied';
+}
+
 class GameOver extends GameEvent {
   @override
   String toString() => 'GameOver';

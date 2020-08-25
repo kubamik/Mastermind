@@ -47,6 +47,10 @@ class Game {
   void changeActivity(int fieldNum) =>
       activeField = fieldNum != activeField ? fieldNum : null;
   void surrender() => gameEnd = gameLossText;
+  void copySequence(List<int> sequence) {
+    fieldsColors = sequence;
+    activeField = null;
+  }
 
   Future<void> push() async{
     if (listsEqual(sequence, fieldsColors)) {

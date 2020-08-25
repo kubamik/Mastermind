@@ -34,6 +34,10 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     if (event is ActivityChanged) {
       yield* _mapActivityChangedToState(event);
     }
+    if (event is AnswerCopied) {
+      game.copySequence(event.sequence);
+      yield GameStateNoneActive(game.gameData, game.trial, game.submits, game.fieldsColors);
+    }
   }
 
   Stream<GameState> _mapAnswerAddedToState(AnswerAdded event) async*{

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mastermind/bloc/game_bloc.dart';
+import 'package:mastermind/bloc/game_events.dart';
 
 import 'package:mastermind/bloc/game_states.dart';
 
@@ -18,7 +19,7 @@ class TrialsList extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               for (var i = state.submits.length - 1; i >= 0; i--)
-                _tile(state.submits[i], i, size),
+                _tile(state.submits[i], i, size, context),
             ],
           ),
         );
@@ -26,9 +27,12 @@ class TrialsList extends StatelessWidget {
     );
   }
 
-  Widget _tile(List<List<int>> dots, int index, double size) {
+  Widget _tile(List<List<int>> dots, int index, double size, BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 5),
+      onLongPress: () {
+        BlocProvider.of<GameBloc>(context).add(AnswerCopied(dots[0].toList()));
+      },
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -41,7 +45,7 @@ class TrialsList extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            width: 30,
+            width: size * 30 / 360,
           ),
           for (var color in dots[0])
             Container(
