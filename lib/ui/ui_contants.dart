@@ -1,5 +1,5 @@
-const String newGameTitle = 'Nowa gra';
-const String newGameQuestion = 'Zakończyć bieżącą grę i rozpocząć nową?';
+const String newGameTitle = 'Koniec gry';
+const String newGameQuestion = 'Zakończyć trwającą grę?';
 const String accept = 'TAK';
 const String decline = 'NIE';
 const List<int> colorNumbers = [6, 8, 10, 12];

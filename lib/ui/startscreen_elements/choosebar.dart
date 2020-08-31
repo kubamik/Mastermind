@@ -44,8 +44,8 @@ class _ChooseBarState extends State<ChooseBar> {
           },
           onChanged: (value) {
             setState(() {
-              this.value = value;
               stream.add(value);
+              this.value = value;
             });
           },
           icon: Icon(Icons.arrow_drop_down),

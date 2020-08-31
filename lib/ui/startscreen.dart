@@ -14,8 +14,6 @@ class Startscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width;
-    MyStreamControllers streams = MyStreamControllers();
-    streams.register();
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return Scaffold(
       appBar: AppBar(
@@ -45,18 +43,18 @@ class Startscreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextInputField(trialTitle, streams.controllers[4]),
-            ChooseBar(fieldTitle, fieldNumbers, streams.controllers[0]),
-            ChooseBar(colorsTitle, colorNumbers, streams.controllers[1]),
-            CheckBar(repeatTitle, repeatDefault, streams.controllers[2]),
-            CheckBar(emptyTitle, emptyDefault, streams.controllers[3]),
+            TextInputField(trialTitle, MyStreamControllers.controllers[4]),
+            ChooseBar(fieldTitle, fieldNumbers, MyStreamControllers.controllers[0]),
+            ChooseBar(colorsTitle, colorNumbers, MyStreamControllers.controllers[1]),
+            CheckBar(repeatTitle, repeatDefault, MyStreamControllers.controllers[2]),
+            CheckBar(emptyTitle, emptyDefault, MyStreamControllers.controllers[3]),
             RaisedButton(
               child: Text(
                 'START',
                 style: TextStyle(fontSize: size * 15 / 360),
               ),
               onPressed: () {
-                streams.startGame(BlocProvider.of<GameBloc>(context));
+                MyStreamControllers.startGame(BlocProvider.of<GameBloc>(context));
                 Navigator.of(context).pushReplacementNamed('/game');
               },
             ),
